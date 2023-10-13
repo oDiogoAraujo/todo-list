@@ -8,6 +8,7 @@ const Form = styled.form`
     justify-content: center;
 
     gap: 8px;
+    transform:translateY(-50%);
 `
 
 export function FormTaskBar(){

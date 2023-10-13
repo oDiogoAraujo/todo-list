@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import AddIcon from "../AddIcon"
+import AddIcon from "./add-icon"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     value: string
