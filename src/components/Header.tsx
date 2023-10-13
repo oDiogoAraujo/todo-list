@@ -8,8 +8,6 @@ const HeaderStyled = styled.header`
     align-items:center;
     justify-content: center;
     
-
-
     background-color: var(--gray-700);
     gap: 12px;
 `
