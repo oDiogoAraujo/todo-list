@@ -18,6 +18,6 @@ const Input = styled.input`
 
 export function InputTask({ placeholder, type }: InputProps) {
     return (
-        <Input type={type} placeholder={placeholder} />
+        <Input type={type} placeholder={placeholder} name="taskInput"/>
     )
 }

@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--gray-100);
   background-color: var(--gray-600);
 
   font-synthesis: none;
@@ -15,6 +15,7 @@
 
 
   /* Cores Padrões */
+  --gray-100: #F2F2F2;
   --gray-400: #333333;
   --gray-500: #262626;
   --gray-600: #1A1A1A;
