@@ -1,6 +1,8 @@
 import styled from "styled-components"
+import { TaskContext } from "../contexts/TaskContext"
+import { useContext } from "react"
 
-const Container = styled.div `
+const Container = styled.div`
     display: flex;
     justify-content: space-between;
 `
@@ -14,7 +16,7 @@ const StyledTitle = styled.h4`
 
     margin-right: 8px;
 `
-const Counter = styled.span `
+const Counter = styled.span`
     font-size: 12px;
     padding: 2px 8px;
     border-radius: 999px;
@@ -23,11 +25,12 @@ const Counter = styled.span `
 `
 
 export function TaskInfo() {
+    const { tasks } = useContext(TaskContext)
     return (
         <Container>
             <span>
                 <StyledTitle color="--blue">Tarefas Criadas</StyledTitle>
-                <Counter>2</Counter>
+                <Counter>{tasks.length}</Counter>
             </span>
 
             <span>
