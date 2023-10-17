@@ -1,6 +1,6 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import { TrashIcon } from "./trash-icon"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { TaskContext } from "../contexts/TaskContext"
 
 const Container = styled.div`
@@ -19,10 +19,15 @@ const Container = styled.div`
 `
 
 const Text = styled.p`
-    margin: 0 12px;
-    font-size: 14px;
-    flex: 1;
+  margin: 0 12px;
+  font-size: 14px;
+  flex: 1;
+
+  &.completed {
+    text-decoration: line-through;
+  }
 `
+
 
 const TrashButton = styled.button`
     background: none;
@@ -31,24 +36,33 @@ const TrashButton = styled.button`
 `
 
 interface TaskProps {
-    id: string
-    text: string
+  id: string
+  text: string
 }
 
 export function Task({ id, text }: TaskProps) {
-    const { removeTask } = useContext(TaskContext)
+  const { removeTask } = useContext(TaskContext)
+  const [isCompleted, setIsCompleted] = useState(false)
 
-    const handleRemoveTask = () => {
-        removeTask(id)
-    }
+  const handleRemoveTask = () => {
+    removeTask(id)
+  }
+  const test = () => {
+    setIsCompleted(!isCompleted)
+  }
 
-    return (
-        <Container id={id}>
-            <input type="checkbox" name="" id="" />
-            <Text>{text}</Text>
-            <TrashButton onClick={handleRemoveTask}>
-                <TrashIcon />
-            </TrashButton>
-        </Container>
-    )
+  return (
+    <Container id={id}>
+      <input
+        type="checkbox"
+        name=""
+        id=""
+        onChange={test}
+      />
+      <Text className={isCompleted ? 'completed' : ''}>{text}</Text>
+      <TrashButton onClick={handleRemoveTask}>
+        <TrashIcon />
+      </TrashButton>
+    </Container>
+  )
 }
