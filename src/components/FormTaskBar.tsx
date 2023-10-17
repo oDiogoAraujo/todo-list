@@ -1,31 +1,26 @@
-import { InputTask } from "./InputTask"
-import { ButtonTask } from "./ButtonTask"
-import styled from "styled-components"
+import { Input, Button, Form } from "./FormTaskBar.styled";
 import { TaskContext } from "../contexts/TaskContext";
 import { useContext } from "react";
-
-const Form = styled.form`
-    display: flex;
-    align-items:center;
-    justify-content: center;
-
-    gap: 8px;
-    transform:translateY(-50%);
-`
+import AddIcon from "./add-icon"
 
 export function FormTaskBar() {
     const { addTask } = useContext(TaskContext);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const text = (event.currentTarget.elements.namedItem('taskInput') as HTMLInputElement).value;
-        addTask(text);
+        event.preventDefault()
+
+        const taskInputField = event.currentTarget.elements.namedItem('taskInput')
+        const text = (taskInputField as HTMLInputElement).value
+        addTask(text)
     }
-    
+
     return (
         <Form onSubmit={handleSubmit}>
-            <InputTask type="text" placeholder="Adicione uma nova tarefa" />
-            <ButtonTask value="Criar" />
+            <Input type="text" placeholder="Adicione uma nova tarefa" name="taskInput" />
+            <Button>
+                Criar
+                <AddIcon />
+            </Button>
         </Form>
     )
 }
