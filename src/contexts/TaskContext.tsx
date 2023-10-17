@@ -9,6 +9,7 @@ interface Task {
 interface TaskContextProps {
     tasks: Task[]
     addTask: (text: string) => void
+    removeTask: (id: string) => void
 }
 
 interface TaskProviderProps {
@@ -17,7 +18,8 @@ interface TaskProviderProps {
 
 export const TaskContext = createContext<TaskContextProps>({
     tasks: [],
-    addTask: () => {}
+    addTask: () => {},
+    removeTask: () => {}
 });
 
 export const TaskProvider = ({ children }: TaskProviderProps) => {
@@ -31,8 +33,12 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
         setTasks([...tasks, newTask]);
     };
 
+    const removeTask = (id: string) => {
+        setTasks(tasks.filter(task => task.id == id))
+    }
+
     return (
-        <TaskContext.Provider value={{ tasks, addTask }}>
+        <TaskContext.Provider value={{ tasks, addTask , removeTask }}>
             {children}
         </TaskContext.Provider>
     );
