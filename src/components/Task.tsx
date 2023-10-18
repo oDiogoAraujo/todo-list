@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { TrashIcon } from "./trash-icon"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { TaskContext } from "../contexts/TaskContext"
 
 const Container = styled.div`
@@ -39,17 +39,18 @@ const TrashButton = styled.button`
 interface TaskProps {
   id: string
   text: string
+  isCompleted: boolean
 }
 
-export function Task({ id, text }: TaskProps) {
+export function Task({ id, text, isCompleted }: TaskProps) {
   const { removeTask, completeTask } = useContext(TaskContext)
-  const [isCompleted, setIsCompleted] = useState(false)
+
 
   const handleRemoveTask = () => {
     removeTask(id)
   }
   const checkTask = () => {
-    setIsCompleted(!isCompleted)
+    !isCompleted
     completeTask(id)
   }
 
@@ -60,6 +61,7 @@ export function Task({ id, text }: TaskProps) {
         name=""
         id=""
         onChange={checkTask}
+        defaultChecked={isCompleted}
       />
       <Text className={isCompleted ? 'completed' : ''}>{text}</Text>
       <TrashButton onClick={handleRemoveTask}>
