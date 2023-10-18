@@ -5,6 +5,7 @@ import { useContext } from "react"
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 `
 
 const StyledTitle = styled.h4`
@@ -25,19 +26,21 @@ const Counter = styled.span`
 `
 
 export function TaskCounter() {
-    const { tasks, tasksCompleted } = useContext(TaskContext);
-  
-    return (
-      <Container>
-        <span>
-          <StyledTitle color="--blue">Tarefas Criadas</StyledTitle>
-          <Counter>{tasks.length}</Counter>
-        </span>
-        <span>
-          <StyledTitle color="--purple">Concluídas</StyledTitle>
-          <Counter>{tasksCompleted.length}</Counter>
-        </span>
-      </Container>
-    );
-  }
-  
+  const { tasks } = useContext(TaskContext);
+  const tasksCompletedd = tasks.filter(task => {
+    if (task.isCompleted) return task
+  })
+
+  return (
+    <Container>
+      <span>
+        <StyledTitle color="--blue">Tarefas Criadas</StyledTitle>
+        <Counter>{tasks.length}</Counter>
+      </span>
+      <span>
+        <StyledTitle color="--purple">Concluídas</StyledTitle>
+        <Counter>{tasksCompletedd.length} de {tasks.length}</Counter>
+      </span>
+    </Container>
+  );
+}
