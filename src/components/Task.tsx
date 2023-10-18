@@ -25,6 +25,7 @@ const Text = styled.p`
 
   &.completed {
     text-decoration: line-through;
+    color: var(--gray-300)
   }
 `
 
@@ -41,14 +42,15 @@ interface TaskProps {
 }
 
 export function Task({ id, text }: TaskProps) {
-  const { removeTask } = useContext(TaskContext)
+  const { removeTask, completeTask } = useContext(TaskContext)
   const [isCompleted, setIsCompleted] = useState(false)
 
   const handleRemoveTask = () => {
     removeTask(id)
   }
-  const test = () => {
+  const checkTask = () => {
     setIsCompleted(!isCompleted)
+    completeTask(id)
   }
 
   return (
@@ -57,7 +59,7 @@ export function Task({ id, text }: TaskProps) {
         type="checkbox"
         name=""
         id=""
-        onChange={test}
+        onChange={checkTask}
       />
       <Text className={isCompleted ? 'completed' : ''}>{text}</Text>
       <TrashButton onClick={handleRemoveTask}>
