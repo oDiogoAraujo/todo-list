@@ -1,5 +1,6 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from "uuid"
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface Task {
     id: string
@@ -9,7 +10,6 @@ interface Task {
 
 interface TaskContextProps {
     tasks: Task[]
-    tasksCompleted: Task[],
     addTask: (text: string) => void
     removeTask: (id: string) => void
     completeTask: (id: string) => void;
@@ -21,7 +21,6 @@ interface TaskProviderProps {
 
 export const TaskContext = createContext<TaskContextProps>({
     tasks: [],
-    tasksCompleted: [],
     addTask: () => { },
     removeTask: () => { },
     completeTask: () => { }
@@ -29,7 +28,12 @@ export const TaskContext = createContext<TaskContextProps>({
 
 export const TaskProvider = ({ children }: TaskProviderProps) => {
     const [tasks, setTasks] = useState<Task[]>([]);
-    const [tasksCompleted, setTasksCompleted] = useState<Task[]>([]);
+
+    const { getItem, setItem } = useLocalStorage('task')
+
+    useEffect(() => {
+        setTasks(getItem())
+    }, [])
 
     const addTask = (text: string) => {
         const newTask: Task = {
@@ -38,31 +42,27 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
             isCompleted: false
         };
         setTasks([...tasks, newTask]);
+        setItem([...tasks, newTask])
     };
 
     const removeTask = (id: string) => {
         setTasks(tasks.filter(task => task.id !== id))
-        setTasksCompleted(tasks.filter(task => task.id !== id))
+        setItem(tasks.filter(task => task.id !== id))
+
     }
 
     const completeTask = (id: string) => {
-        setTasks(
-            tasks.map(task => {
-                if (id === task.id) task.isCompleted = !task.isCompleted
-                return task
-            })
-        )
-
-        setTasksCompleted(
-            tasks.filter(task => {
-                if (task.isCompleted) return task
-            })
-        )
+        const refreshTasks = tasks.map(task => {
+            if (id === task.id) task.isCompleted = !task.isCompleted
+            return task
+        })
+        setTasks(refreshTasks)
+        setItem(refreshTasks)
     }
 
 
     return (
-        <TaskContext.Provider value={{ tasks, tasksCompleted, addTask, removeTask, completeTask }}>
+        <TaskContext.Provider value={{ tasks, addTask, removeTask, completeTask }}>
             {children}
         </TaskContext.Provider>
     );
