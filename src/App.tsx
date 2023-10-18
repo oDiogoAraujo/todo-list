@@ -6,6 +6,7 @@ import { TaskContainer } from './components/TaskContainer'
 const DivSpacing = styled.div `
   max-width: 736px;
   margin: 0 auto;
+  padding: 0 14px
 `
 
 

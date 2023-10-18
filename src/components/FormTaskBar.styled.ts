@@ -7,6 +7,8 @@ export const Form = styled.form`
 
     gap: 8px;
     transform:translateY(-50%);
+    flex-wrap:wrap;
+    min-width: 250;
 `
 
 export const Button = styled.button`
@@ -28,12 +30,13 @@ export const Button = styled.button`
 `
 
 export const Input = styled.input`
-flex: 1;
-padding: 16px;
+    flex: 1 1 200px;
+    padding: 16px;
 
-border: 1px solid var(--gray-700);
-border-radius: 8px;
+    border: 1px solid var(--gray-700);
+    border-radius: 8px;
 
-background-color: var(--gray-500);
-font-size: 16px;
+    background-color: var(--gray-500);
+    font-size: 16px;
+    /* min-width: 250px */
 `
