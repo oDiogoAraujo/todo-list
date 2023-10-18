@@ -1,20 +1,14 @@
 import { useContext } from "react";
 import { TaskContext } from "../contexts/TaskContext";
 import { Task } from "./Task";
-import { TaskInfo } from "./TaskInfo";
-
-
-// interface Task {
-//     id: string
-//     text: string
-// }
+import { TaskCounter } from "./TaskCounter";
 
 export function TaskContainer() {
     const { tasks } = useContext(TaskContext);
 
     return (
         <div>
-            <TaskInfo />
+            <TaskCounter />
             <div>
                 {tasks.map( (task, index) => (
                     <span key={index}>
