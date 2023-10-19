@@ -4,6 +4,7 @@ export const Form = styled.form`
     display: flex;
     align-items:center;
     justify-content: center;
+    color: #FFFFFF;
 
     gap: 8px;
     transform:translateY(-50%);
