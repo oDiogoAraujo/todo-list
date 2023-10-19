@@ -1,27 +1,47 @@
-# React + TypeScript + Vite
+## 💻 Projeto To Do List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esse projeto foi desenvolvido de forma independente, encontrei o arquivo Figma através de um amigo e decidi então realizar de forma independete. O projeto se trata de uma lista de afazeres, podendo criar tarefas, marcas as concluidas e deleta-las. 
 
-Currently, two official plugins are available:
+## Começando...
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Instale as dependências com:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+npm install
+# ou
+yarn 
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Iniciando o projeto
+
+Execute o projeto com:
+
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+Abra [http://localhost:5173](http://localhost:5173) em seu browser para ver o resultado.
+
+## 🚀 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- Vite
+- React Js
+- Styled Components
+
+### Features
+
+- Uuidv4
+
+## Preview Desktop 
+
+![Projeto todo-list](/github/todo-list.png)
+
+
+
+
+
+
